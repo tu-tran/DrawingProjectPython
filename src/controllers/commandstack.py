@@ -43,22 +43,22 @@ class CommandStack(object):
         self.redo_stack = []
         self.undo_stack.append(command)
 
-    def undo(self):
+    def undo(self, canvas):
         '''
         Undoes one command from the undo stack. The undone command then is moved to
         the redo stack.
         '''
         command = self.undo_stack.pop()
-        command.undo()
+        command.undo(canvas)
         self.redo_stack.append(command)
 
-    def redo(self):
+    def redo(self, canvas):
         '''
         Redoes one command from the redo stack. The redone command then is moved to
         the undo stack.
         '''
         command = self.redo_stack.pop()
-        command.redo()
+        command.execute(canvas)
         self.undo_stack.append(command)
 
 
