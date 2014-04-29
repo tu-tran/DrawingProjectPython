@@ -6,6 +6,9 @@ class UndoDrawCommand(IOCommand):
     """
     Command for undoing last command
     """
+    
+    def __init__(self, commandStack):
+        self.commandStack = commandStack
 
     #Get unique command ID
     @staticmethod
@@ -22,4 +25,4 @@ class UndoDrawCommand(IOCommand):
 
     # Undo previous command
     def execute(self, canvas):
-        pass
+        self.commandStack.undo(canvas)
