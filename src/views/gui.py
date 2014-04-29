@@ -1,4 +1,4 @@
-from tkinter import Image, PhotoImage, Frame, Button, LEFT, TOP, X, FLAT, RAISED, YES, BOTH, GROOVE, RIDGE
+from tkinter import Image, PhotoImage, Frame, Button, LEFT, TOP, X, FLAT, RAISED, YES, BOTH, GROOVE, RIDGE, SUNKEN
 from views.resourcemanager import ResourceManager, DefaultResourceManager
 from drawings.canvas import DrawingCanvas
 from drawings.colorpicker import ColorPicker
@@ -45,9 +45,11 @@ class ClassicGUI(GUI):
             cmdButton = Button(self.topToolbar, image=self.res.get(command.getId()), relief=GROOVE, command=partial(self.onIOCommandClick, command))
             cmdButton.pack(side=LEFT, padx=2, pady=2)
 
+        self.commandButtons = []
         for command in commands:
-            cmdButton = Button(self.topToolbar, image=self.res.get(command.getId()), relief=FLAT, command=partial(self.onDrawCommandClick, command))
+            cmdButton = Button(self.topToolbar, image=self.res.get(command.getId()), relief=FLAT, command=partial(self.onDrawCommandButtonClick, command))
             cmdButton.pack(side=LEFT, padx=2, pady=2)
+            self.commandButtons.append(cmdButton)
 
         cmdColorPicker = Button(self.topToolbar, relief=RIDGE)
         cmdHandler = partial(self.onChangeColor, cmdColorPicker)
@@ -58,3 +60,13 @@ class ClassicGUI(GUI):
     def onChangeColor(self, button):
         self.colorPicker.selectColor(self.root)
         button.config(background=self.colorPicker.getColor())
+        
+    def onDrawCommandButtonClick(self, command):
+        # Reset relief state of other buttons
+        for btn in self.commandButtons:
+            if btn is not command:
+                btn.config(relief=FLAT)
+                
+        # Set relief state for active command button
+        command.config(relief=SUNKEN)
+        self.onDrawCommandClick(command)
