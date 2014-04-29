@@ -3,6 +3,8 @@ from controllers.commandstack import CommandStack
 from models.io.new import *
 from models.io.open import *
 from models.io.save import *
+from models.io.undo import *
+from models.io.redo import *
 
 from models.draw.circle import *
 from models.draw.line import *
@@ -23,7 +25,7 @@ class DrawController(object):
         self.commandStack = CommandStack()
         self.view.canvas.bind('<ButtonPress-1>', self.onStart)
         self.view.canvas.bind('<B1-Motion>', self.onDrag)
-        ios = [ NewDrawCommand, OpenDrawCommand, SaveDrawCommand ]
+        ios = [ NewDrawCommand(self.canvas), OpenDrawCommand(self.canvas), SaveDrawCommand(self.canvas), UndoDrawCommand(self.commandStack), RedoDrawCommand(self.commandStack) ]
         commands = [ LineDrawCommand, RectangleDrawCommand, CircleDrawCommand, OvalDrawCommand ]
         self.view.onIOCommandClick = self.onIOCommandClick
         self.view.onDrawCommandClick = self.onDrawCommandClick
@@ -44,7 +46,7 @@ class DrawController(object):
 
     def onIOCommandClick(self, command):
         print("Activated IO command: " + command.__name__)
-        command().execute(self.canvas)
+        command.execute(self.canvas)
 
     def onDrawCommandClick(self, command):
         print("Changed active command: " + command.__name__)
