@@ -1,3 +1,4 @@
+import os
 from tkinter import Image, PhotoImage
 
 
@@ -24,7 +25,7 @@ class DefaultResourceManager(ResourceManager):
     """
     Default resource manager
     """
-    BASE_PATH = "views/res/default/"
+    BASE_PATH = os.path.dirname(os.path.realpath(__file__)) + "/res/default/"
     data = {
         ResourceManager.NEW_DRAWING: [BASE_PATH + "new.png", None],
         ResourceManager.OPEN_DRAWING: [BASE_PATH + "open.png", None],
