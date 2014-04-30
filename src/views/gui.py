@@ -14,7 +14,7 @@ class GUI(object):
         self.colorPicker = ColorPicker(root)
         self.topToolbar = Frame(root, bd=1, relief=RAISED)
         self.topToolbar.pack(side=TOP, fill=X)
-        self.canvas = DrawingCanvas(root, self.colorPicker, width=500, height=500, bg='white')
+        self.canvas = DrawingCanvas(root, self.colorPicker)
         self.canvas.pack(expand=YES, fill=BOTH)
 
     def initButtons(self, ios, commands):

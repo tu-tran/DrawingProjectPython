@@ -1,4 +1,5 @@
 from tkinter import ALL
+from drawings.canvas import DrawingCanvas
 from views.resourcemanager import ResourceManager
 from models.iocommand import IOCommand
 
@@ -24,3 +25,4 @@ class NewDrawCommand(IOCommand):
     # Create a new drawing
     def execute(self, canvas):
         canvas.getDrawArea().delete(ALL)
+        canvas.getDrawArea().config(width=DrawingCanvas.DEFAULT_WIDTH, height=DrawingCanvas.DEFAULT_HEIGHT)

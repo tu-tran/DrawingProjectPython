@@ -5,8 +5,8 @@ class IOCommand(Command):
     IO commands such as opening/saving Bitmap files
     """
 
-    FILE_TYPE = [('All files', '*')]
-    FILE_EXTENSION = ''
+    FILE_TYPE = [('Bitmap Image', '*.bmp'), ('All files', '*')]
+    FILE_EXTENSION = '.bmp'
 	
     def __init__(self, canvas):
         self.canvas = canvas

@@ -1,4 +1,4 @@
-from tkinter import BitmapImage
+from tkinter import BitmapImage, ALL, NW
 from tkinter.filedialog import askopenfilename
 from views.resourcemanager import ResourceManager
 from models.iocommand import IOCommand
@@ -26,7 +26,11 @@ class OpenDrawCommand(IOCommand):
     def execute(self, canvas):
         fileName = askopenfilename(filetypes=self.FILE_TYPE, defaultextension=self.FILE_EXTENSION)
         if fileName:
-            image = BitmapImage(file=fileName)                       # load image
-            self.object = canvas.getDrawArea().create_image(# add to canvas
-                                                            0, 0,
-                                                            bitmap=image)
+            from PIL import Image, ImageTk
+            image = Image.open(fileName)				# load image
+            photoImg = ImageTk.PhotoImage(image)
+            print("Opening image {}: {}x{}".format(fileName, photoImg.width(), photoImg.height()))
+            canvas.getDrawArea().delete(ALL)
+            canvas.getDrawArea().config(width=photoImg.width(), height=photoImg.height())
+            self.object = canvas.getDrawArea().create_image(0, 0, image=photoImg, anchor=NW)
+            self.photoImg = photoImg

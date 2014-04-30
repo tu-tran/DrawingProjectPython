@@ -26,4 +26,13 @@ class SaveDrawCommand(IOCommand):
         fileName = asksaveasfilename(filetypes=self.FILE_TYPE, defaultextension=self.FILE_EXTENSION)
         if fileName:
             canvas.getDrawArea().update()
-            canvas.getDrawArea().postscript(file=fileName, colormode="color")
+            import uuid
+            from PIL import Image
+            tempFile = uuid.uuid1().hex
+            canvas.getDrawArea().postscript(file=tempFile, colormode="color")
+            with open(str(tempFile), 'rb') as f:
+                img = Image.open(tempFile)
+                img.save(fileName, "bmp")
+                del img
+            import os
+            os.remove(tempFile)
