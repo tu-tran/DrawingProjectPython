@@ -13,7 +13,7 @@ class UndoDrawCommand(IOCommand):
     #Get unique command ID
     @staticmethod
     def getId():
-        return ResourceManager.NEW_DRAWING
+        return ResourceManager.UNDO
 
     # Get the name of the command
     def get_name(self):

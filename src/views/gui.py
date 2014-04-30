@@ -47,7 +47,9 @@ class ClassicGUI(GUI):
 
         self.commandButtons = []
         for command in commands:
-            cmdButton = Button(self.topToolbar, image=self.res.get(command.getId()), relief=FLAT, command=partial(self.onDrawCommandButtonClick, command))
+            cmdButton = Button(self.topToolbar, image=self.res.get(command.getId()), relief=FLAT)
+            cmdHandler = partial(self.onDrawCommandButtonClick, command, cmdButton)
+            cmdButton.config(command=cmdHandler)
             cmdButton.pack(side=LEFT, padx=2, pady=2)
             self.commandButtons.append(cmdButton)
 
@@ -61,12 +63,12 @@ class ClassicGUI(GUI):
         self.colorPicker.selectColor(self.root)
         button.config(background=self.colorPicker.getColor())
         
-    def onDrawCommandButtonClick(self, command):
+    def onDrawCommandButtonClick(self, command, cmdButton):
         # Reset relief state of other buttons
         for btn in self.commandButtons:
-            if btn is not command:
+            if btn is not cmdButton:
                 btn.config(relief=FLAT)
                 
         # Set relief state for active command button
-        command.config(relief=SUNKEN)
+        cmdButton.config(relief=SUNKEN)
         self.onDrawCommandClick(command)

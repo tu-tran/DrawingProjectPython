@@ -7,6 +7,9 @@ class IOCommand(Command):
 
     FILE_TYPE = [('All files', '*')]
     FILE_EXTENSION = ''
+	
+    def __init__(self, canvas):
+        self.canvas = canvas
 
     def execute(self, canvas):
         pass

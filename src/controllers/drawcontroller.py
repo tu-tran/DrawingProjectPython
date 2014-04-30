@@ -25,8 +25,17 @@ class DrawController(object):
         self.commandStack = CommandStack()
         self.view.canvas.bind('<ButtonPress-1>', self.onStart)
         self.view.canvas.bind('<B1-Motion>', self.onDrag)
-        ios = [ NewDrawCommand(self.canvas), OpenDrawCommand(self.canvas), SaveDrawCommand(self.canvas), UndoDrawCommand(self.commandStack), RedoDrawCommand(self.commandStack) ]
-        commands = [ LineDrawCommand, RectangleDrawCommand, CircleDrawCommand, OvalDrawCommand ]
+        ios = [ NewDrawCommand(self.canvas),
+				OpenDrawCommand(self.canvas),
+				SaveDrawCommand(self.canvas),
+				UndoDrawCommand(self.commandStack),
+				RedoDrawCommand(self.commandStack) ]
+				
+        commands = [ LineDrawCommand,
+					 RectangleDrawCommand, 
+					 CircleDrawCommand, 
+					 OvalDrawCommand ]
+					 
         self.view.onIOCommandClick = self.onIOCommandClick
         self.view.onDrawCommandClick = self.onDrawCommandClick
         self.view.initButtons(ios, commands)
@@ -41,13 +50,14 @@ class DrawController(object):
         canvas = event.widget
         if self.drawObject:
             self.drawArea.delete(self.drawObject)
-        self.drawObject = self.activeCommand.draw(self.canvas, self.startX, self.startY, self.drawArea.canvasx(event.x),
+        self.drawObject = self.activeCommand.onDraw(self.canvas, self.startX, self.startY, self.drawArea.canvasx(event.x),
                                    self.drawArea.canvasy(event.y))
 
     def onIOCommandClick(self, command):
-        print("Activated IO command: " + command.__name__)
+        print("Activated IO command: " + command.get_name())
         command.execute(self.canvas)
 
     def onDrawCommandClick(self, command):
         print("Changed active command: " + command.__name__)
         self.activeCommand = command()
+        self.commandStack.add_command(self.activeCommand)

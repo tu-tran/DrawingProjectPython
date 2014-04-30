@@ -13,7 +13,7 @@ class RedoDrawCommand(IOCommand):
     #Get unique command ID
     @staticmethod
     def getId():
-        return ResourceManager.NEW_DRAWING
+        return ResourceManager.REDO
 
     # Get the name of the command
     def get_name(self):

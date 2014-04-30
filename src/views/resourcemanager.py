@@ -11,6 +11,8 @@ class ResourceManager(object):
     NEW_DRAWING = "io_new"
     OPEN_DRAWING = "io_open"
     SAVE_DRAWING = "io_save"
+    UNDO = "io_undo"
+    REDO = "io_redo"
 
     LINE = "cmd_line"
     RECTANGLE = "cmd_rect"
@@ -30,6 +32,9 @@ class DefaultResourceManager(ResourceManager):
         ResourceManager.NEW_DRAWING: [BASE_PATH + "new.png", None],
         ResourceManager.OPEN_DRAWING: [BASE_PATH + "open.png", None],
         ResourceManager.SAVE_DRAWING: [BASE_PATH + "save.png", None],
+		ResourceManager.UNDO: [BASE_PATH + "undo.png", None],
+		ResourceManager.REDO: [BASE_PATH + "redo.png", None],
+		
 
         ResourceManager.LINE: [BASE_PATH + "line.png", None],
         ResourceManager.RECTANGLE: [BASE_PATH + "rect.png", None],
