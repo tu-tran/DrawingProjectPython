@@ -23,7 +23,7 @@ class OpenDrawCommand(IOCommand):
         return "Open an existing drawing"
 
     # Open an existing drawing
-    def execute(self, canvas):
+    def execute(self, canvas, commandStack):
         fileName = askopenfilename(filetypes=self.FILE_TYPE, defaultextension=self.FILE_EXTENSION)
         if fileName:
             from PIL import Image, ImageTk
@@ -34,3 +34,4 @@ class OpenDrawCommand(IOCommand):
             canvas.getDrawArea().config(width=photoImg.width(), height=photoImg.height())
             self.object = canvas.getDrawArea().create_image(0, 0, image=photoImg, anchor=NW)
             self.photoImg = photoImg
+            commandStack.clear()

@@ -24,4 +24,4 @@ class OvalDrawCommand(DrawCommand):
 
     # Draw an oval between two points
     def draw(self, canvas, fromX, fromY, toX, toY):
-        return Canvas.create_oval(canvas.getDrawArea(), fromX, fromY, toX, toY, outline=canvas.getShapeColor())
+        return Canvas.create_oval(canvas.getDrawArea(), fromX, fromY, toX, toY, outline=canvas.getShapeColor(), width=self.PEN_WIDTH)

@@ -22,7 +22,7 @@ class SaveDrawCommand(IOCommand):
         return "Save a drawing"
 
     # Save a drawing
-    def execute(self, canvas):
+    def execute(self, canvas, commandStack):
         fileName = asksaveasfilename(filetypes=self.FILE_TYPE, defaultextension=self.FILE_EXTENSION)
         if fileName:
             canvas.getDrawArea().update()
@@ -36,3 +36,4 @@ class SaveDrawCommand(IOCommand):
                 del img
             import os
             os.remove(tempFile)
+            commandStack.clear()

@@ -28,4 +28,4 @@ class LineDrawCommand(DrawCommand):
                            fromY,
                            toX,
                            toY,
-                           fill=canvas.getShapeColor())
+                           fill=canvas.getShapeColor(), width=self.PEN_WIDTH)

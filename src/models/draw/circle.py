@@ -33,4 +33,4 @@ class CircleDrawCommand(DrawCommand):
                            fromY,
                            fromX + xFactor * diameter,
                            fromY + yFactor * diameter,
-                           outline=canvas.getShapeColor())
+                           outline=canvas.getShapeColor(), width=self.PEN_WIDTH)

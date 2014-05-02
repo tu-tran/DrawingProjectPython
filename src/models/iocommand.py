@@ -8,8 +8,5 @@ class IOCommand(Command):
     FILE_TYPE = [('Bitmap Image', '*.bmp'), ('All files', '*')]
     FILE_EXTENSION = '.bmp'
 	
-    def __init__(self, canvas):
-        self.canvas = canvas
-
-    def execute(self, canvas):
+    def execute(self, canvas, commandStack):
         pass

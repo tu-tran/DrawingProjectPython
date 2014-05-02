@@ -23,6 +23,7 @@ class NewDrawCommand(IOCommand):
         return "Create a new drawing"
 
     # Create a new drawing
-    def execute(self, canvas):
+    def execute(self, canvas, commandStack):
         canvas.getDrawArea().delete(ALL)
         canvas.getDrawArea().config(width=DrawingCanvas.DEFAULT_WIDTH, height=DrawingCanvas.DEFAULT_HEIGHT)
+        commandStack.clear()

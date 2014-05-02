@@ -29,4 +29,4 @@ class RectangleDrawCommand(DrawCommand):
                                 fromY,
                                 toX,
                                 toY,
-                                outline=canvas.getShapeColor())
+                                outline=canvas.getShapeColor(), width=self.PEN_WIDTH)

@@ -34,6 +34,11 @@ class CommandStack(object):
         return False
 
 
+    def clear(self):
+        self.redo_stack = []
+        self.undo_stack = []
+
+
     def add_command(self, command):
         '''
         Adds a new undoable command into this Undo Manager.

@@ -23,13 +23,15 @@ class DrawController(object):
         self.canvas = view.canvas
         self.drawArea = view.canvas.getDrawArea()
         self.commandStack = CommandStack()
+        self.activeCommand = None
         self.view.canvas.bind('<ButtonPress-1>', self.onStart)
         self.view.canvas.bind('<B1-Motion>', self.onDrag)
-        ios = [ NewDrawCommand(self.canvas),
-				OpenDrawCommand(self.canvas),
-				SaveDrawCommand(self.canvas),
-				UndoDrawCommand(self.commandStack),
-				RedoDrawCommand(self.commandStack) ]
+        self.view.canvas.bind('<ButtonRelease-1>', self.onDragEnd)
+        ios = [ NewDrawCommand,
+				OpenDrawCommand,
+				SaveDrawCommand,
+				UndoDrawCommand,
+				RedoDrawCommand ]
 				
         commands = [ LineDrawCommand,
 					 RectangleDrawCommand, 
@@ -39,25 +41,31 @@ class DrawController(object):
         self.view.onIOCommandClick = self.onIOCommandClick
         self.view.onDrawCommandClick = self.onDrawCommandClick
         self.view.initButtons(ios, commands)
-        self.activeCommand = LineDrawCommand()
 
     def onStart(self, event):
-        self.startX = self.drawArea.canvasx(event.x)
-        self.startY = self.drawArea.canvasy(event.y)
-        self.drawObject = None
+        if self.activeCommand:
+            self.startX = self.drawArea.canvasx(event.x)
+            self.startY = self.drawArea.canvasy(event.y)
+            self.drawObject = None
 
     def onDrag(self, event):
-        canvas = event.widget
-        if self.drawObject:
-            self.drawArea.delete(self.drawObject)
-        self.drawObject = self.activeCommand.onDraw(self.canvas, self.startX, self.startY, self.drawArea.canvasx(event.x),
-                                   self.drawArea.canvasy(event.y))
+        if self.activeCommand:
+            canvas = event.widget
+            if self.drawObject:
+                self.drawArea.delete(self.drawObject)
+            self.drawObject = self.activeCommand.onDraw(self.canvas, self.startX, self.startY, self.drawArea.canvasx(event.x),
+                                       self.drawArea.canvasy(event.y))
 
-    def onIOCommandClick(self, command):
+    def onDragEnd(self, event):
+        if self.activeCommand:
+            print("Drew object: " + str(self.drawObject))
+            self.commandStack.add_command(self.activeCommand)
+            self.activeCommand = type(self.activeCommand)()
+
+    def onIOCommandClick(self, button, command):
         print("Activated IO command: " + command.get_name())
-        command.execute(self.canvas)
+        command.execute(self.canvas, self.commandStack)
 
-    def onDrawCommandClick(self, command):
+    def onDrawCommandClick(self, button, command):
         print("Changed active command: " + command.__name__)
         self.activeCommand = command()
-        self.commandStack.add_command(self.activeCommand)

@@ -7,9 +7,6 @@ class RedoDrawCommand(IOCommand):
     Command for redoing last command
     """
     
-    def __init__(self, commandStack):
-        self.commandStack = commandStack
-
     #Get unique command ID
     @staticmethod
     def getId():
@@ -24,5 +21,5 @@ class RedoDrawCommand(IOCommand):
         return "Redo last command"
 
     # Redo last command
-    def execute(self, canvas):
-        self.commandStack.redo(canvas)
+    def execute(self, canvas, commandStack):
+        commandStack.redo(canvas)

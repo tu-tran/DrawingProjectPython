@@ -10,6 +10,7 @@ class DrawingCanvas(Frame):
 	
     def __init__(self, parent, colorPicker):
         Frame.__init__(self, parent)
+        self.config(bg='grey')
         self.colorPicker = colorPicker
         self.isModified = False
         self.activeCommand = None
@@ -24,7 +25,7 @@ class DrawingCanvas(Frame):
         canvas.config(scrollregion=(0,0,self.DEFAULT_WIDTH, self.DEFAULT_HEIGHT))
         canvas.config(xscrollcommand=hScrollBar.set, yscrollcommand=vScrollBar.set)
 
-        canvas.pack(side=LEFT, expand=YES, fill=BOTH)
+        canvas.pack(side=LEFT, expand=YES)
         self.canvas = canvas
 
     def bind(self, sequence=None, func=None, add=None):

@@ -1,4 +1,4 @@
-from tkinter import Image, PhotoImage, Frame, Button, LEFT, TOP, X, FLAT, RAISED, YES, BOTH, GROOVE, RIDGE, SUNKEN
+from tkinter import Image, PhotoImage, Frame, Button, LEFT, TOP, X, FLAT, RAISED, YES, BOTH, GROOVE, RIDGE, SUNKEN, RAISED
 from views.resourcemanager import ResourceManager, DefaultResourceManager
 from drawings.canvas import DrawingCanvas
 from drawings.colorpicker import ColorPicker
@@ -20,10 +20,10 @@ class GUI(object):
     def initButtons(self, ios, commands):
         pass
 
-    def onIOCommandClick(self, command):
+    def onIOCommandClick(self, button, command):
         pass
 
-    def onDrawCommandClick(self, command):
+    def onDrawCommandClick(self, button, command):
         pass
 
     def onChangeColor(self, command):
@@ -42,33 +42,35 @@ class ClassicGUI(GUI):
 
     def initButtons(self, ios, commands):
         for command in ios:
-            cmdButton = Button(self.topToolbar, image=self.res.get(command.getId()), relief=GROOVE, command=partial(self.onIOCommandClick, command))
+            cmdInstance = command()
+            cmdButton = Button(self.topToolbar, image=self.res.get(command.getId()), relief=GROOVE)
+            cmdHandler = partial(self.onIOCommandClick, cmdButton, cmdInstance)
+            cmdButton.config(command=cmdHandler)
             cmdButton.pack(side=LEFT, padx=2, pady=2)
 
         self.commandButtons = []
         for command in commands:
             cmdButton = Button(self.topToolbar, image=self.res.get(command.getId()), relief=FLAT)
-            cmdHandler = partial(self.onDrawCommandButtonClick, command, cmdButton)
+            cmdHandler = partial(self.onDrawCommandButtonClick, cmdButton, command)
             cmdButton.config(command=cmdHandler)
             cmdButton.pack(side=LEFT, padx=2, pady=2)
             self.commandButtons.append(cmdButton)
 
         cmdColorPicker = Button(self.topToolbar, relief=RIDGE)
         cmdHandler = partial(self.onChangeColor, cmdColorPicker)
-        cmdColorPicker.config(command=cmdHandler)
-        cmdColorPicker.config(background=self.colorPicker.getColor())
-        cmdColorPicker.pack(side=LEFT, padx=5, pady=2, expand=5)
+        cmdColorPicker.config(command=cmdHandler, background=self.colorPicker.getColor(), relief=GROOVE, width=2, highlightbackground='white')
+        cmdColorPicker.pack(side=LEFT, padx=15, pady=2)
 
     def onChangeColor(self, button):
         self.colorPicker.selectColor(self.root)
         button.config(background=self.colorPicker.getColor())
         
-    def onDrawCommandButtonClick(self, command, cmdButton):
+    def onDrawCommandButtonClick(self, button, command):
         # Reset relief state of other buttons
         for btn in self.commandButtons:
-            if btn is not cmdButton:
+            if btn is not button:
                 btn.config(relief=FLAT)
                 
         # Set relief state for active command button
-        cmdButton.config(relief=SUNKEN)
-        self.onDrawCommandClick(command)
+        button.config(relief=SUNKEN)
+        self.onDrawCommandClick(button, command)
