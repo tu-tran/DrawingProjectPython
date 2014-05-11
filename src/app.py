@@ -11,6 +11,7 @@ from drawings.colorpicker import ColorPicker
 from views.gui import ClassicGUI
 from controllers.drawcontroller import DrawController
 
+
 class DrawingApp:
     """
     Main entry point application

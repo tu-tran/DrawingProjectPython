@@ -6,7 +6,7 @@ class RedoDrawCommand(IOCommand):
     """
     Command for redoing last command
     """
-    
+
     #Get unique command ID
     @staticmethod
     def getId():

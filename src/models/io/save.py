@@ -28,6 +28,7 @@ class SaveDrawCommand(IOCommand):
             canvas.getDrawArea().update()
             import uuid
             from PIL import Image
+
             tempFile = uuid.uuid1().hex
             canvas.getDrawArea().postscript(file=tempFile, colormode="color")
             with open(str(tempFile), 'rb') as f:
@@ -35,5 +36,6 @@ class SaveDrawCommand(IOCommand):
                 img.save(fileName, "bmp")
                 del img
             import os
+
             os.remove(tempFile)
             commandStack.clear()

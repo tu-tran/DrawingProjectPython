@@ -29,8 +29,8 @@ class CircleDrawCommand(DrawCommand):
         xFactor = 1 if toX > fromX else -1
         yFactor = 1 if toY > fromY else -1
         return Canvas.create_oval(canvas.getDrawArea(),
-                           fromX,
-                           fromY,
-                           fromX + xFactor * diameter,
-                           fromY + yFactor * diameter,
-                           outline=canvas.getShapeColor(), width=self.PEN_WIDTH)
+                                  fromX,
+                                  fromY,
+                                  fromX + xFactor * diameter,
+                                  fromY + yFactor * diameter,
+                                  outline=canvas.getShapeColor(), width=self.PEN_WIDTH)

@@ -1,5 +1,5 @@
 import os
-from tkinter import Image, PhotoImage
+from tkinter import PhotoImage
 
 
 class ResourceManager(object):
@@ -32,9 +32,8 @@ class DefaultResourceManager(ResourceManager):
         ResourceManager.NEW_DRAWING: [BASE_PATH + "new.png", None],
         ResourceManager.OPEN_DRAWING: [BASE_PATH + "open.png", None],
         ResourceManager.SAVE_DRAWING: [BASE_PATH + "save.png", None],
-		ResourceManager.UNDO: [BASE_PATH + "undo.png", None],
-		ResourceManager.REDO: [BASE_PATH + "redo.png", None],
-		
+        ResourceManager.UNDO: [BASE_PATH + "undo.png", None],
+        ResourceManager.REDO: [BASE_PATH + "redo.png", None],
 
         ResourceManager.LINE: [BASE_PATH + "line.png", None],
         ResourceManager.RECTANGLE: [BASE_PATH + "rect.png", None],

@@ -1,8 +1,9 @@
-from tkinter import Image, PhotoImage, Frame, Button, LEFT, TOP, X, FLAT, RAISED, YES, BOTH, GROOVE, RIDGE, SUNKEN, RAISED
+from tkinter import Frame, Button, LEFT, TOP, X, FLAT, YES, BOTH, GROOVE, RIDGE, SUNKEN, RAISED
+from functools import partial
+
 from views.resourcemanager import ResourceManager, DefaultResourceManager
 from drawings.canvas import DrawingCanvas
 from drawings.colorpicker import ColorPicker
-from functools import partial
 
 
 class GUI(object):
@@ -17,15 +18,19 @@ class GUI(object):
         self.canvas = DrawingCanvas(root, self.colorPicker)
         self.canvas.pack(expand=YES, fill=BOTH)
 
+    # Initializes IO and Draw commands.
     def initButtons(self, ios, commands):
         pass
 
+    # Event handler when users click on an IO command.
     def onIOCommandClick(self, button, command):
         pass
 
+    # Event handler when users click on a draw command.
     def onDrawCommandClick(self, button, command):
         pass
 
+    # Event handler when users change the selected color.
     def onChangeColor(self, command):
         pass
 
@@ -40,6 +45,7 @@ class ClassicGUI(GUI):
         self.root = root
         self.res = DefaultResourceManager()     # The default resource manager providing tool bar icons
 
+    # Initializes IO and Draw commands.
     def initButtons(self, ios, commands):
         for command in ios:
             cmdInstance = command()
@@ -58,19 +64,22 @@ class ClassicGUI(GUI):
 
         cmdColorPicker = Button(self.topToolbar, relief=RIDGE)
         cmdHandler = partial(self.onChangeColor, cmdColorPicker)
-        cmdColorPicker.config(command=cmdHandler, background=self.colorPicker.getColor(), relief=GROOVE, width=2, highlightbackground='white')
+        cmdColorPicker.config(command=cmdHandler, background=self.colorPicker.getColor(), relief=GROOVE, width=2,
+                              highlightbackground='white')
         cmdColorPicker.pack(side=LEFT, padx=15, pady=2)
 
+    # Event handler when users change the selected color.
     def onChangeColor(self, button):
         self.colorPicker.selectColor(self.root)
         button.config(background=self.colorPicker.getColor())
-        
+
+    # Event handler when users click on a draw command button.
     def onDrawCommandButtonClick(self, button, command):
         # Reset relief state of other buttons
         for btn in self.commandButtons:
             if btn is not button:
                 btn.config(relief=FLAT)
-                
+
         # Set relief state for active command button
         button.config(relief=SUNKEN)
         self.onDrawCommandClick(button, command)

@@ -24,8 +24,8 @@ class LineDrawCommand(DrawCommand):
     # Draw a straight line between two points
     def draw(self, canvas, fromX, fromY, toX, toY):
         return Canvas.create_line(canvas.getDrawArea(),
-                           fromX,
-                           fromY,
-                           toX,
-                           toY,
-                           fill=canvas.getShapeColor(), width=self.PEN_WIDTH)
+                                  fromX,
+                                  fromY,
+                                  toX,
+                                  toY,
+                                  fill=canvas.getShapeColor(), width=self.PEN_WIDTH)

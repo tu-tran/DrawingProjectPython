@@ -25,8 +25,8 @@ class RectangleDrawCommand(DrawCommand):
     # Draw a rectangle between two points
     def draw(self, canvas, fromX, fromY, toX, toY):
         return Canvas.create_rectangle(canvas.getDrawArea(),
-                                fromX,
-                                fromY,
-                                toX,
-                                toY,
-                                outline=canvas.getShapeColor(), width=self.PEN_WIDTH)
+                                       fromX,
+                                       fromY,
+                                       toX,
+                                       toY,
+                                       outline=canvas.getShapeColor(), width=self.PEN_WIDTH)

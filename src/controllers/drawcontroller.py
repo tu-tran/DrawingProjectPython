@@ -27,45 +27,61 @@ class DrawController(object):
         self.view.canvas.bind('<ButtonPress-1>', self.onStart)
         self.view.canvas.bind('<B1-Motion>', self.onDrag)
         self.view.canvas.bind('<ButtonRelease-1>', self.onDragEnd)
-        ios = [ NewDrawCommand,
-				OpenDrawCommand,
-				SaveDrawCommand,
-				UndoDrawCommand,
-				RedoDrawCommand ]
-				
-        commands = [ LineDrawCommand,
-					 RectangleDrawCommand, 
-					 CircleDrawCommand, 
-					 OvalDrawCommand ]
-					 
+        ios = [NewDrawCommand,
+               OpenDrawCommand,
+               SaveDrawCommand,
+               UndoDrawCommand,
+               RedoDrawCommand]
+
+        commands = [LineDrawCommand,
+                    RectangleDrawCommand,
+                    CircleDrawCommand,
+                    OvalDrawCommand]
+
         self.view.onIOCommandClick = self.onIOCommandClick
         self.view.onDrawCommandClick = self.onDrawCommandClick
         self.view.initButtons(ios, commands)
 
     def onStart(self, event):
+        """
+        Event handler when users pick the first point on the drawing canvas
+        """
         if self.activeCommand:
             self.startX = self.drawArea.canvasx(event.x)
             self.startY = self.drawArea.canvasy(event.y)
             self.drawObject = None
 
     def onDrag(self, event):
+        """
+        Event handler when users drag the mouse when creating a new shape on the drawing canvas
+        """
         if self.activeCommand:
             canvas = event.widget
             if self.drawObject:
                 self.drawArea.delete(self.drawObject)
-            self.drawObject = self.activeCommand.onDraw(self.canvas, self.startX, self.startY, self.drawArea.canvasx(event.x),
-                                       self.drawArea.canvasy(event.y))
+            self.drawObject = self.activeCommand.onDraw(self.canvas, self.startX, self.startY,
+                                                        self.drawArea.canvasx(event.x),
+                                                        self.drawArea.canvasy(event.y))
 
     def onDragEnd(self, event):
+        """
+        Event handler when users release the mouse when creating a new shape on the drawing canvas
+        """
         if self.activeCommand:
             print("Drew object: " + str(self.drawObject))
             self.commandStack.add_command(self.activeCommand)
             self.activeCommand = type(self.activeCommand)()
 
     def onIOCommandClick(self, button, command):
+        """
+        Event handler when users click on an IO command (e.g. clear, open, save)
+        """
         print("Activated IO command: " + command.get_name())
         command.execute(self.canvas, self.commandStack)
 
     def onDrawCommandClick(self, button, command):
+        """
+        Event handler when users click on a Draw command (e.g. select shape type)
+        """
         print("Changed active command: " + command.__name__)
         self.activeCommand = command()
