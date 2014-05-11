@@ -4,9 +4,10 @@ from tkinter import PhotoImage
 
 class ResourceManager(object):
     """
-    Utility base class for retrieving program resources
+    Utility base class for retrieving program resources. Current this class only handles image resources.
     """
 
+    # Constants for defining unique resource ID.
     EXIT = "prog_exit"
     NEW_DRAWING = "io_new"
     OPEN_DRAWING = "io_open"
