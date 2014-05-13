@@ -5,11 +5,9 @@ Student number: 401311
 Study program: Service Design and Engineering
 """
 
-from tkinter import Tk
-from drawings.canvas import *
-from drawings.colorpicker import ColorPicker
-from views.gui import ClassicGUI
-from controllers.drawcontroller import DrawController
+from src.drawings.canvas import *
+from src.views.gui import ClassicGUI
+from src.controllers.drawcontroller import DrawController
 
 
 class DrawingApp:

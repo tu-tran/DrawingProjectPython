@@ -1,6 +1,6 @@
 from tkinter.filedialog import asksaveasfilename
-from views.resourcemanager import ResourceManager
-from models.iocommand import IOCommand
+from src.views.resourcemanager import ResourceManager
+from src.models.iocommand import IOCommand
 
 
 class SaveDrawCommand(IOCommand):
@@ -10,15 +10,17 @@ class SaveDrawCommand(IOCommand):
 
     #Get unique command ID
     @staticmethod
-    def getId():
+    def get_id():
         return ResourceManager.SAVE_DRAWING
 
     # Get the name of the command
-    def get_name(self):
+    @staticmethod
+    def get_name():
         return "Save Drawing"
 
     # Get the description of the command
-    def get_description(self):
+    @staticmethod
+    def get_description():
         return "Save a drawing"
 
     # Save a drawing

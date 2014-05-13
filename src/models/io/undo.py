@@ -1,5 +1,5 @@
-from views.resourcemanager import ResourceManager
-from models.iocommand import IOCommand
+from src.views.resourcemanager import ResourceManager
+from src.models.iocommand import IOCommand
 
 
 class UndoDrawCommand(IOCommand):
@@ -9,15 +9,17 @@ class UndoDrawCommand(IOCommand):
 
     #Get unique command ID
     @staticmethod
-    def getId():
+    def get_id():
         return ResourceManager.UNDO
 
     # Get the name of the command
-    def get_name(self):
+    @staticmethod
+    def get_name():
         return "Undo"
 
     # Get the description of the command
-    def get_description(self):
+    @staticmethod
+    def get_description():
         return "Undo last command"
 
     # Undo previous command

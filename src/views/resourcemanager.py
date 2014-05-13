@@ -1,11 +1,14 @@
 import os
 from tkinter import PhotoImage
+from abc import ABCMeta, abstractmethod
 
 
 class ResourceManager(object):
     """
     Utility base class for retrieving program resources. Current this class only handles image resources.
     """
+
+    __metaclass__ = ABCMeta
 
     # Constants for defining unique resource ID.
     EXIT = "prog_exit"
@@ -20,6 +23,7 @@ class ResourceManager(object):
     OVAL = "cmd_oval"
     CIRCLE = "cmd_circle"
 
+    @abstractmethod
     def get(self, name):
         pass
 

@@ -1,7 +1,7 @@
 from tkinter import Canvas
-from views.resourcemanager import ResourceManager
+from src.views.resourcemanager import ResourceManager
 
-from models.drawcommand import DrawCommand
+from src.models.drawcommand import DrawCommand
 
 
 class OvalDrawCommand(DrawCommand):
@@ -11,15 +11,17 @@ class OvalDrawCommand(DrawCommand):
 
     #Get unique command ID
     @staticmethod
-    def getId():
+    def get_id():
         return ResourceManager.OVAL
 
     # Get the name of the command
-    def get_name(self):
+    @staticmethod
+    def get_name():
         return "Draw Circle"
 
     # Get the description of the command
-    def get_description(self):
+    @staticmethod
+    def get_description():
         return "Draw a circle between two points"
 
     # Draw an oval between two points

@@ -1,6 +1,6 @@
 from tkinter import Canvas
-from views.resourcemanager import ResourceManager
-from models.drawcommand import DrawCommand
+from src.views.resourcemanager import ResourceManager
+from src.models.drawcommand import DrawCommand
 
 
 class LineDrawCommand(DrawCommand):
@@ -10,15 +10,17 @@ class LineDrawCommand(DrawCommand):
 
     #Get unique command ID
     @staticmethod
-    def getId():
+    def get_id():
         return ResourceManager.LINE
 
     # Get the name of the command
-    def get_name(self):
+    @staticmethod
+    def get_name():
         return "Draw Line"
 
     # Get the description of the command
-    def get_description(self):
+    @staticmethod
+    def get_description():
         return "Draw a straight line between two points"
 
     # Draw a straight line between two points

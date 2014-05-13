@@ -1,7 +1,7 @@
 from tkinter import Canvas
-from views.resourcemanager import ResourceManager
+from src.views.resourcemanager import ResourceManager
 
-from models.drawcommand import DrawCommand
+from src.models.drawcommand import DrawCommand
 
 
 class RectangleDrawCommand(DrawCommand):
@@ -11,15 +11,17 @@ class RectangleDrawCommand(DrawCommand):
 
     #Get unique command ID
     @staticmethod
-    def getId():
+    def get_id():
         return ResourceManager.RECTANGLE
 
     # Get the name of the command
-    def get_name(self):
+    @staticmethod
+    def get_name():
         return "Draw Rectangle"
 
     # Get the description of the command
-    def get_description(self):
+    @staticmethod
+    def get_description():
         return "Draw a rectangle between two points"
 
     # Draw a rectangle between two points

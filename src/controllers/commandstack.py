@@ -15,7 +15,7 @@ class CommandStack(object):
     def can_undo(self):
         """
         Tests if an undo operation can be performed at this moment.
-        
+
         @return: boolean value telling if an undo is possible to perform.
         """
         if self.undo_stack:
@@ -26,7 +26,7 @@ class CommandStack(object):
     def can_redo(self):
         """
         Tests if an redo operation can be performed at this moment.
-        
+
         @return: boolean value telling if a redo is possible to perform.
         """
         if self.redo_stack:
@@ -67,25 +67,3 @@ class CommandStack(object):
             command = self.redo_stack.pop()
             command.redo(canvas)
             self.undo_stack.append(command)
-
-
-    def describe_undoable_command(self):
-        """
-        Describes an available undoable command.
-        
-        @return: A description of the undoable command for menus etc.
-        """
-        if self.can_undo():
-            return "Undo " + self.undo_stack[-1].get_description()
-        return "Nothing to undo."
-
-
-    def describe_redoable_command(self):
-        """
-        Describes an available redoable command.
-        
-        @return: A description of the redoable command for menus etc.
-        """
-        if self.can_redo():
-            return "Redo " + self.redo_stack[-1].get_description()
-        return "Nothing to redo."
