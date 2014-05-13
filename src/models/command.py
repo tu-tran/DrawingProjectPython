@@ -1,5 +1,6 @@
 from abc import ABCMeta, abstractmethod
 
+
 class Command(object):
     """
     Base abstract class for all commands

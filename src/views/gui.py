@@ -2,7 +2,7 @@ from abc import ABCMeta, abstractmethod
 from tkinter import Frame, Button, LEFT, TOP, X, FLAT, YES, BOTH, GROOVE, RIDGE, SUNKEN, RAISED
 from functools import partial
 
-from src.views.resourcemanager import ResourceManager, DefaultResourceManager
+from src.views.resourcemanager import DefaultResourceManager
 from src.drawings.canvas import DrawingCanvas
 from src.drawings.colorpicker import ColorPicker
 
@@ -13,6 +13,7 @@ class GUI(object):
     """
 
     __metaclass__ = ABCMeta
+
     def __init__(self, root):
         self.colorPicker = ColorPicker(root)
         self.topToolbar = Frame(root, bd=1, relief=RAISED)

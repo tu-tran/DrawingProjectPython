@@ -1,5 +1,6 @@
-from src.models.command import Command
 from abc import ABCMeta, abstractmethod
+
+from src.models.command import Command
 
 
 class IOCommand(Command):

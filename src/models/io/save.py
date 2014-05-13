@@ -33,11 +33,15 @@ class SaveDrawCommand(IOCommand):
 
             tempFile = uuid.uuid1().hex
             canvas.getDrawArea().postscript(file=tempFile, colormode="color")
-            with open(str(tempFile), 'rb') as f:
-                img = Image.open(tempFile)
-                img.save(fileName, "bmp")
-                del img
-            import os
 
+            with open(str(tempFile), 'rb') as f:
+                try:
+                    img = Image.open(tempFile)
+                    img.save(fileName, "bmp")
+                except Exception as ex:
+                    print("Failed to save file {}: {}".format(str(fileName), str(ex)))
+                del img
+
+            import os
             os.remove(tempFile)
             commandStack.clear()

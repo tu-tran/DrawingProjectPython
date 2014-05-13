@@ -28,15 +28,15 @@ class DrawController(object):
         self.view.canvas.bind('<B1-Motion>', self.onDrag)
         self.view.canvas.bind('<ButtonRelease-1>', self.onDragEnd)
         self.ios = [NewDrawCommand,
-               OpenDrawCommand,
-               SaveDrawCommand,
-               UndoDrawCommand,
-               RedoDrawCommand]
+                    OpenDrawCommand,
+                    SaveDrawCommand,
+                    UndoDrawCommand,
+                    RedoDrawCommand]
 
         self.commands = [LineDrawCommand,
-                    RectangleDrawCommand,
-                    CircleDrawCommand,
-                    OvalDrawCommand]
+                         RectangleDrawCommand,
+                         CircleDrawCommand,
+                         OvalDrawCommand]
 
         self.view.onIOCommandClick = self.onIOCommandClick
         self.view.onDrawCommandClick = self.onDrawCommandClick
@@ -59,8 +59,8 @@ class DrawController(object):
             if self.activeCommand.drawObject:
                 self.drawArea.delete(self.activeCommand.drawObject)
             self.activeCommand.onDraw(self.canvas, self.activeCommand.fromX, self.activeCommand.fromY,
-                                                        self.drawArea.canvasx(event.x),
-                                                        self.drawArea.canvasy(event.y))
+                                      self.drawArea.canvasx(event.x),
+                                      self.drawArea.canvasy(event.y))
 
     def onDragEnd(self, event):
         """
