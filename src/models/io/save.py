@@ -1,6 +1,6 @@
 from tkinter.filedialog import asksaveasfilename
-from src.views.resourcemanager import ResourceManager
-from src.models.iocommand import IOCommand
+from views.resourcemanager import ResourceManager
+from models.iocommand import IOCommand
 
 
 class SaveDrawCommand(IOCommand):

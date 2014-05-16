@@ -2,9 +2,9 @@ from abc import ABCMeta, abstractmethod
 from tkinter import Frame, Button, LEFT, TOP, X, FLAT, YES, BOTH, GROOVE, RIDGE, SUNKEN, RAISED
 from functools import partial
 
-from src.views.resourcemanager import DefaultResourceManager
-from src.drawings.canvas import DrawingCanvas
-from src.drawings.colorpicker import ColorPicker
+from views.resourcemanager import DefaultResourceManager
+from drawings.canvas import DrawingCanvas
+from drawings.colorpicker import ColorPicker
 
 
 class GUI(object):

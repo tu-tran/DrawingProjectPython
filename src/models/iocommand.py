@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstractmethod
 
-from src.models.command import Command
+from models.command import Command
 
 
 class IOCommand(Command):

@@ -1,6 +1,6 @@
 from tkinter import Canvas
-from src.views.resourcemanager import ResourceManager
-from src.models.drawcommand import DrawCommand
+from views.resourcemanager import ResourceManager
+from models.drawcommand import DrawCommand
 
 
 class CircleDrawCommand(DrawCommand):

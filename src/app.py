@@ -5,9 +5,9 @@ Student number: 401311
 Study program: Service Design and Engineering
 """
 
-from src.drawings.canvas import *
-from src.views.gui import ClassicGUI
-from src.controllers.drawcontroller import DrawController
+from drawings.canvas import *
+from views.gui import ClassicGUI
+from controllers.drawcontroller import DrawController
 
 
 class DrawingApp:

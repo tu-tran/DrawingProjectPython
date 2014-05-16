@@ -1,7 +1,7 @@
 from tkinter import ALL, NW
 from tkinter.filedialog import askopenfilename
-from src.views.resourcemanager import ResourceManager
-from src.models.iocommand import IOCommand
+from views.resourcemanager import ResourceManager
+from models.iocommand import IOCommand
 
 
 class OpenDrawCommand(IOCommand):

@@ -1,7 +1,7 @@
 from tkinter import ALL
-from src.drawings.canvas import DrawingCanvas
-from src.views.resourcemanager import ResourceManager
-from src.models.iocommand import IOCommand
+from drawings.canvas import DrawingCanvas
+from views.resourcemanager import ResourceManager
+from models.iocommand import IOCommand
 
 
 class NewDrawCommand(IOCommand):

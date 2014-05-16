@@ -1,4 +1,4 @@
-from src.drawings.colorpicker import ColorPicker
+from drawings.colorpicker import ColorPicker
 
 
 class DummyColorPicker(ColorPicker):

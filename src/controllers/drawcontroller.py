@@ -1,15 +1,15 @@
-from src.controllers.commandstack import CommandStack
+from controllers.commandstack import CommandStack
 
-from src.models.io.new import *
-from src.models.io.open import *
-from src.models.io.save import *
-from src.models.io.undo import *
-from src.models.io.redo import *
+from models.io.new import *
+from models.io.open import *
+from models.io.save import *
+from models.io.undo import *
+from models.io.redo import *
 
-from src.models.draw.circle import *
-from src.models.draw.line import *
-from src.models.draw.oval import *
-from src.models.draw.rectangle import *
+from models.draw.circle import *
+from models.draw.line import *
+from models.draw.oval import *
+from models.draw.rectangle import *
 
 
 class DrawController(object):

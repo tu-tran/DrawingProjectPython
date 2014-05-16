@@ -1,7 +1,7 @@
 from tkinter import Canvas
-from src.views.resourcemanager import ResourceManager
+from views.resourcemanager import ResourceManager
 
-from src.models.drawcommand import DrawCommand
+from models.drawcommand import DrawCommand
 
 
 class OvalDrawCommand(DrawCommand):
