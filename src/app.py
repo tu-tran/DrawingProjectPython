@@ -27,21 +27,9 @@ class DrawingApp:
         self.root.mainloop()
 
 
-    def onClear(self, event):
-        if self.moving: return # ok if moving but confusing
-        event.widget.delete('all')   # use all tag
-        self.images = []
-        self.textInfo = self.canvas.create_text(
-            5, 5, anchor=NW,
-            text='Press ? for help')
-
     def onQuit(self):
         self.root.quit()
         exit()
-        if self.canvas.isModified:
-            return
-        else:
-            self.appExit()
 
 
 if __name__ == '__main__':
